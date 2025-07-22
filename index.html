@@ -50,29 +50,24 @@
   </nav>
 </header>
 <!-- Add your site or app content here -->
-   <div class="hero-full-container background-image-container white-text-container" style="background-image: url('./assets/images/brain.jpg')">
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="hero-full-wrapper">
-            <div class="text-content">
-              <h1>
-                <span id="typed-strings">
-                  <h1>Hello,</h1>
-                  <span>I'm Nidhi Sinha</span>
-                  <span>I am </span>
-                  <span>a Cognitive Researcher</span>
-                  <span>& a Ph.D in Cognitive Psychology (IIT Hyd)</span>
-                </span>
-                <span id="typed"></span>
-              </h1>
-            </div>
+   <div class="hero-full-container background-image-container white-text-container" style="background-image: url('./assets/images/01.jpg')">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="hero-full-wrapper">
+          <div class="text-content">
+            <h1>
+  <span id="line1"></span><br>
+  <span id="line2"></span>
+</h1>
           </div>
         </div>
       </div>
     </div>
   </div>
-   <div class="hero-full-container background-image-container white-text-container" style="background-image: url('./assets/images/brain.jpg')">
+</div>
+
+   <!-- <div class="hero-full-container background-image-container white-text-container" style="background-image: url('./assets/images/01.jpg')">
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
@@ -90,8 +85,8 @@
         </div>
       </div>
     </div>
-  </div>
-    <div class="hero-full-container background-image-container white-text-container" style="background-image: url('./assets/images/brain.jpg')">
+  </div> -->
+    <div class="hero-full-container background-image-container white-text-container" style="background-image: url('./assets/images/01.jpg')">
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
@@ -117,9 +112,63 @@
      type();
      movingBackgroundImage();
   });
+  // document.addEventListener("DOMContentLoaded", function () {
+  //   new Typed("#typed", {
+  //     stringsElement: "#typed-strings",
+  //     typeSpeed: 30,
+  //     backSpeed: 10,
+  //     backDelay: 1500,
+  //     startDelay: 500,
+  //     loop: true,
+  //     smartBackspace: true
+  //   });
+  // });
+  document.addEventListener("DOMContentLoaded", () => {
+    const phrases = [
+  ["Hello,", "I'm Nidhi"],
+  ["I am,", "a Cognitive Science Researcher"],
+  ["I am,", "&amp; a Ph.D in Cognitive Psychology (IIT Hyd)"] // <-- Escaped ampersand
+];
+
+    let current = 0;
+
+    function typeLines() {
+      const [line1Text, line2Text] = phrases[current];
+
+      // Clear existing content
+      document.getElementById("line1").innerHTML = "";
+      document.getElementById("line2").innerHTML = "";
+
+      // Type line 1
+      new Typed("#line1", {
+        strings: [line1Text],
+        typeSpeed: 20,
+        showCursor: false,
+        onComplete: () => {
+          // After line 1, type line 2
+          new Typed("#line2", {
+            strings: [line2Text],
+            typeSpeed: 20,
+            showCursor: false,
+            onComplete: () => {
+              // Wait, then move to next phrase
+              setTimeout(() => {
+                current = (current + 1) % phrases.length;
+                typeLines();
+              }, 2000); // 2 sec delay before next transition
+            }
+          });
+        }
+      });
+    }
+
+    typeLines();
+  });
 </script>
 
 
-<script type="text/javascript" src="./main.70a66962.js"></script></body>
+<script type="text/javascript" src="./main.70a66962.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+</body>
 
 </html>
